@@ -60,7 +60,7 @@ def part2(xs: List[Line]) -> int:
     return countOverlaps(diagram)
 
 def main():
-    lines = readLines(5)
+    lines = readLines("05")
 
     xs = [ Line(line.replace(" -> ", ",").split(",")) for line in lines ]
 

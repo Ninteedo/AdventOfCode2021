@@ -16,7 +16,7 @@ def part2(xs: List[int]) -> int:
     return countLanternFish(xs, 256)
 
 def main():
-    xs = [ int(x) for x in readLines(6)[0].replace("\n", "").split(",") ]
+    xs = [ int(x) for x in readLines("06")[0].replace("\n", "").split(",") ]
 
     print("Part 1", part1(xs))
     print("Part 2", part2(xs))

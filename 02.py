@@ -30,7 +30,7 @@ def part2(xs: List[Command]) -> int:
     return x * y
 
 def readCommands() -> List[Command]:
-    lines = readLines(2)
+    lines = readLines("02")
     result = []
     for line in lines:
         splits = line.split(" ")

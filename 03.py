@@ -25,7 +25,7 @@ def filterByBitCriteria(xs: List[List[int]], toggleFilterValue: bool) -> int:
     return sum([ xs[j][bitCount - i - 1] * (2 ** i) for j in range(0, n) for i in range(0, bitCount) if ratingsValid[j] ])
 
 def main():
-    lines = readLines(3)
+    lines = readLines("03")
     xs = []
     for line in lines:
         x = []

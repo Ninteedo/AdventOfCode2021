@@ -38,7 +38,7 @@ def part2(draws: List[int], boards: List[Board]) -> int:
                     return draw * calculateUnmarkedSum(boards[i], boardMarks[i])
 
 def main():
-    lines = readLines(4)
+    lines = readLines("04")
 
     draws = [ int(x) for x in lines[0].replace("\n", "").split(",") if x != "" ]
     boards = [ [ [ int(x) for x in lines[i+j].replace("\n", "").split(" ") if x != "" ] for j in range(0, boardSize) ] for i in range(2, len(lines), boardSize+1) ]

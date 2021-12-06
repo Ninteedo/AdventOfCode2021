@@ -22,7 +22,7 @@ g :: [Int] -> Int
 g = countLanternFish 256 . getInitialFishCount
 
 main = do
-    contents <- readFile "input/6.txt"
+    contents <- readFile "input/06.txt"
     let ss = lines contents
         xs :: [Int]
         xs = map read $ split "," $ head ss

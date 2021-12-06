@@ -16,7 +16,7 @@ def slidingIncreaseCount(xs: List[int]) -> int:
     return result
 
 def main():
-    xs = readLinesInt(1)
+    xs = readLinesInt("01")
 
     print("Part 1", increaseCount(xs))
     print("Part 2", slidingIncreaseCount(xs))

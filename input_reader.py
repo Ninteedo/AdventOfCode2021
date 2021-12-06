@@ -1,13 +1,13 @@
 from typing import List
 
-def readLines(challengeNumber: int) -> List[str]:
-    f = open(f"input/{challengeNumber}.txt", "r")
+def readLines(fileName: str) -> List[str]:
+    f = open(f"input/{fileName}.txt", "r")
     lines = f.readlines()
     f.close()
     return lines
 
-def readLinesInt(challengeNumber: int) -> List[int]:
-    lines = readLines(challengeNumber)
+def readLinesInt(fileName: str) -> List[int]:
+    lines = readLines(fileName)
     xs = []
     for line in lines:
         xs.append(int(line))
