@@ -1,12 +1,14 @@
-from typing import List, Tuple
+from typing import List
 from input_reader import readLines
 
 def part1(xs: List[int]) -> int:
+    '''Sort method is O(n log n), otherwise O(n)'''
     xs.sort()
     median = xs[(len(xs)+1) // 2]
     return sum([ abs(x - median) for x in xs ])
 
 def part2(xs: List[int]) -> int:
+    '''O(n), but runtime scales with variance of inputs'''
     mean = int(sum(xs) / len(xs))
     return min([ sum([ sum([ i+1 for i in range(abs(x - j)) ]) for x in xs ]) for j in range(mean-1, mean+1) ])
 

@@ -29,6 +29,7 @@ def countOverlaps(diagram: OverlapDiagram) -> int:
     return sum([ sum([ diagram.getOverlapCount(x, y) > 1 for y in range(diagram.minY, diagram.maxY+1) ]) for x in range(diagram.minX, diagram.maxX+1)])
 
 def part1(xs: List[Line]) -> int:
+    '''O(n), also scales with line lengths'''
     lines = [ x for x in xs if x.x1 == x.x2 or x.y1 == x.y2]
     diagram = OverlapDiagram(lines)
     for line in lines:
@@ -42,6 +43,7 @@ def part1(xs: List[Line]) -> int:
     return countOverlaps(diagram)
 
 def part2(xs: List[Line]) -> int:
+    '''O(n), also scales with line lengths'''
     lines = [ x for x in xs if x.x1 == x.x2 or x.y1 == x.y2 or abs(x.x1 - x.x2) == abs(x.y1 - x.y2) ]
     diagram = OverlapDiagram(lines)
     for line in lines:

@@ -4,6 +4,7 @@ from input_reader import readLines
 Command = Tuple[str, int]
 
 def part1(xs: List[Command]) -> int:
+    '''O(n)'''
     x = 0
     y = 0
     for command, value in xs:
@@ -16,6 +17,7 @@ def part1(xs: List[Command]) -> int:
     return x * y
 
 def part2(xs: List[Command]) -> int:
+    '''O(n)'''
     x = 0
     y = 0
     aim = 0

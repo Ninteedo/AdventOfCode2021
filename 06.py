@@ -2,6 +2,7 @@ from typing import List
 from input_reader import readLines
 
 def countLanternFish(startingFish: List[int], days: int) -> int:
+    '''O(m+n) where m is number of days'''
     resetDayCount, initialDayCount = 6, 8
     daysRemaining = days
     fishTimers = [ sum([ x == i for x in startingFish ]) for i in range(0, initialDayCount+1) ]

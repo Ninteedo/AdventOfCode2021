@@ -2,6 +2,7 @@ from typing import List
 from input_reader import readLinesInt
 
 def increaseCount(xs: List[int]) -> int:
+    '''O(n)'''
     result = 0
     for i in range(1, len(xs)):
         if xs[i] > xs[i-1]:
@@ -9,6 +10,7 @@ def increaseCount(xs: List[int]) -> int:
     return result
 
 def slidingIncreaseCount(xs: List[int]) -> int:
+    '''O(n)'''
     result = 0
     for i in range(3, len(xs)):
         if (xs[i] + xs[i-1] + xs[i-2]) > (xs[i-1] + xs[i-2] + xs[i-3]):

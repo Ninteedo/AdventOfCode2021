@@ -19,6 +19,7 @@ def calculateUnmarkedSum(board: Board, markBoard: BoardMarks) -> int:
     return sum([ board[j][k] for j in range(0, boardSize) for k in range(0, boardSize) if not markBoard[j][k] ])
 
 def part1(draws: List[int], boards: List[Board]) -> int:
+    '''O(nm)'''
     boardMarks = createBoardMarks(len(boards))
     for draw in draws:
         boardMarks = applyBingoDraw(draw, boards, boardMarks)
@@ -27,6 +28,7 @@ def part1(draws: List[int], boards: List[Board]) -> int:
                 return draw * calculateUnmarkedSum(boards[i], boardMarks[i])
 
 def part2(draws: List[int], boards: List[Board]) -> int:
+    '''O(nm)'''
     boardMarks = createBoardMarks(len(boards))
     remainingBoards = [True] * len(boards)
     for draw in draws:

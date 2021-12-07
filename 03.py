@@ -2,6 +2,7 @@ from typing import List
 from input_reader import readLines
 
 def part1(xs: List[List[int]]) -> int:
+    '''O(n)'''
     n = len(xs)
     bitCount = len(xs[0])
     digitSums = [ sum([ x[bitCount - i - 1] for x in xs ]) for i in range(0, bitCount) ]
@@ -9,6 +10,7 @@ def part1(xs: List[List[int]]) -> int:
     return gamma * (2 ** bitCount - gamma - 1)
 
 def part2(xs: List[List[int]]) -> int:
+    '''O(n)'''
     return filterByBitCriteria(xs, True) * filterByBitCriteria(xs, False)
 
 def filterByBitCriteria(xs: List[List[int]], toggleFilterValue: bool) -> int:
