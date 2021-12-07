@@ -5,27 +5,18 @@ Command = Tuple[str, int]
 
 def part1(xs: List[Command]) -> int:
     '''O(n)'''
-    x = 0
-    y = 0
-    for command, value in xs:
-        if command == "forward":
-            x += value
-        elif command == "down":
-            y += value
-        else:
-            y -= value
+    x = sum([ value for command, value in xs if command == "f" ])
+    y = sum([ value if command == "d" else -value for command, value in xs if command != "f" ])
     return x * y
 
 def part2(xs: List[Command]) -> int:
     '''O(n)'''
-    x = 0
-    y = 0
-    aim = 0
+    x, y, aim = 0, 0, 0
     for command, value in xs:
-        if command == "forward":
+        if command == "f":
             x += value
             y += aim * value
-        elif command == "down":
+        elif command == "d":
             aim += value
         else:
             aim -= value
@@ -36,7 +27,7 @@ def readCommands() -> List[Command]:
     result = []
     for line in lines:
         splits = line.split(" ")
-        result.append((splits[0], int(splits[1])))
+        result.append((splits[0][0], int(splits[1])))
     return result
 
 def main():
