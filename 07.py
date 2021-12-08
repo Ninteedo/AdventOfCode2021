@@ -10,7 +10,7 @@ def part1(xs: List[int]) -> int:
 def part2(xs: List[int]) -> int:
     '''O(n), but runtime scales with variance of inputs'''
     mean = int(sum(xs) / len(xs))
-    return min([ sum([ sum([ i+1 for i in range(abs(x - j)) ]) for x in xs ]) for j in range(mean-1, mean+1) ])
+    return min([ sum([ (abs(x - j) * (abs(x - j) + 1)) // 2 for x in xs ]) for j in range(mean-1, mean+1) ])
 
 def main():
     xs = [ int(x) for x in readLines("07")[0].replace("\n", "").split(",") ]
