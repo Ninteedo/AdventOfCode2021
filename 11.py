@@ -1,5 +1,5 @@
-from typing import List, Tuple
-from input_reader import readLines, readLinesInt
+from typing import List
+from input_reader import readLines
 
 def part1(xs: List[List[int]]) -> int:
     '''O(steps * nm)'''
@@ -11,7 +11,7 @@ def part1(xs: List[List[int]]) -> int:
         flashes += countFlashes(octStates)
     return flashes
 
-def part2(xs) -> int:
+def part2(xs: List[List[int]]) -> int:
     '''O(steps * nm)'''
     simulFlashes, target = 0, len(xs) * len(xs[0])
     step = 0
@@ -36,9 +36,10 @@ def processStep(xs: List[List[int]]) -> List[List[int]]:
     return octStates
 
 def validCoord(xs: List[List[int]], row: int, col: int) -> bool:
+    '''O(1)'''
     return row >= 0 and row < len(xs) and col >= 0 and col < len(xs[0])
 
-def doFlash(xs: List[List[int]], row: int, col: int) -> Tuple[int, List[List[int]]]:
+def doFlash(xs: List[List[int]], row: int, col: int) -> List[List[int]]:
     '''O(1)'''
     octStates = xs
     octStates[row][col] = 0
@@ -49,6 +50,7 @@ def doFlash(xs: List[List[int]], row: int, col: int) -> Tuple[int, List[List[int
     return octStates
 
 def countFlashes(xs: List[List[int]]) -> int:
+    '''O(nm)'''
     return sum([ xs[row][col] == 0 for row in range(len(xs)) for col in range(len(xs[0])) ])
 
 def printBoard(xs: List[List[int]]):
