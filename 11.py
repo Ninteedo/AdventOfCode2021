@@ -4,50 +4,42 @@ from input_reader import readLines
 def part1(xs: List[List[int]]) -> int:
     '''O(steps * nm)'''
     steps = 100
-    octStates = xs
+    states = xs
     flashes = 0
     for step in range(steps):
-        octStates = processStep(octStates)
-        flashes += countFlashes(octStates)
+        states = processStep(states)
+        flashes += countFlashes(states)
     return flashes
 
 def part2(xs: List[List[int]]) -> int:
     '''O(steps * nm)'''
-    simulFlashes, target = 0, len(xs) * len(xs[0])
+    flashes, target = 0, len(xs) * len(xs[0])
     step = 0
-    octStates = xs
-    while simulFlashes != target:
+    states = xs
+    while flashes != target:
         step += 1
-        octStates = processStep(octStates)
-        simulFlashes = countFlashes(octStates)
+        states = processStep(states)
+        flashes = countFlashes(states)
     return step
 
 def processStep(xs: List[List[int]]) -> List[List[int]]:
     '''O(nm)'''
-    octStates = [ [ xs[row][col] + 1 for col in range(len(xs[0])) ] for row in range(len(xs)) ]
-    changes = True
-    while changes:
-        changes = False
-        for row in range(len(xs)):
-            for col in range(len(xs[0])):
-                if octStates[row][col] > 9:
-                    octStates = doFlash(octStates, row, col)
-                    changes = True
-    return octStates
+    n, m = len(xs), len(xs[0])
+    states = [ [ xs[row][col] + 1 for col in range(len(xs[0])) ] for row in range(len(xs)) ]
+    flashes = [ (row, col) for col in range(len(xs[0])) for row in range(len(xs)) if states[row][col] > 9 ]
+    while flashes != []:
+        row, col = flashes.pop()
+        if states[row][col] > 9:
+            states[row][col] = 0
+            adjacencies = [ (r, c) for r in [-1, 0, 1] for c in [-1, 0, 1] if (r != 0 or c != 0) and validCoord(row+r, col+c, n, m) and states[row+r][col+c] != 0 ]
+            for r, c in adjacencies:
+                states[row+r][col+c] += 1
+                flashes.append((row+r, col+c))
+    return states
 
-def validCoord(xs: List[List[int]], row: int, col: int) -> bool:
+def validCoord(row: int, col: int, rows: int, cols: int) -> bool:
     '''O(1)'''
-    return row >= 0 and row < len(xs) and col >= 0 and col < len(xs[0])
-
-def doFlash(xs: List[List[int]], row: int, col: int) -> List[List[int]]:
-    '''O(1)'''
-    octStates = xs
-    octStates[row][col] = 0
-    adjacencies = [ (i, j) for i in range(-1, 2) for j in range(-1, 2) if (i != 0 or j != 0) and validCoord(octStates, row+i, col+j) ]
-    for r, c in adjacencies:
-        if octStates[row+r][col+c] != 0:
-            octStates[row+r][col+c] += 1
-    return octStates
+    return row >= 0 and row < rows and col >= 0 and col < cols
 
 def countFlashes(xs: List[List[int]]) -> int:
     '''O(nm)'''
