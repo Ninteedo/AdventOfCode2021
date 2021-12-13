@@ -20,7 +20,7 @@ def getPaths(currentPath: List[str], connections: Dict[str, List[str]], revisite
         for connection in connections[current]:
             baseCond = connection.isupper() or connection not in currentPath
             if baseCond or (not revisited and connection != startStr and connection != endStr):
-                paths += [ path for path in getPaths(currentPath + [connection], connections, revisited or not baseCond) ]
+                paths += getPaths(currentPath + [connection], connections, revisited or not baseCond)
     return paths
 
 def main():
