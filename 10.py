@@ -17,10 +17,10 @@ def corruptedBracket(line: str) -> str:
     pairs = { "(": ")", "[": "]", "{": "}", "<": ">" }
     opened = []
     for c in line:
-        if c in pairs.keys():
+        if c in pairs:
             opened.append(c)
         else:
-            requiredBracket = pairs[opened.pop(-1)]
+            requiredBracket = pairs[opened.pop()]
             if c != requiredBracket:
                 return c
     return None
@@ -31,16 +31,9 @@ def lineScore(line: str) -> int:
     pairs = { "(": ")", "[": "]", "{": "}", "<": ">" }
     opened = []
     for c in line:
-        if c in pairs.keys():
-            opened.append(c)
-        else:
-            pairs[opened.pop(-1)]
-    opened.reverse()
-    total = 0
-    for c in opened:
-        total *= 5
-        total += scores[pairs[c]]
-    return total
+        if c in pairs:  opened.append(c)
+        else:           opened.pop()
+    return sum([ scores[pairs[c]] * (5 ** i) for i, c in enumerate(opened) ])
 
 def main():
     lines = readLines("10")
