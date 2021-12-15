@@ -1,8 +1,6 @@
 from typing import List
 from input_reader import readLines
 
-maxRisk = -1
-
 def part1(xs: List[List[int]]) -> int:
     '''Reasonable runtime <1s'''
     return a_star(xs)
@@ -16,9 +14,9 @@ def a_star(xs: List[List[int]]):
 
     open = set([ (0, 0) ])
 
-    g = [ [ -1 for c in range(len(xs[0])) ] for r in range(len(xs)) ]
+    g = [ [ -1 for _ in range(len(xs[0])) ] for _ in range(len(xs)) ]
     g[0][0] = 0
-    f = [ [ -1 for c in range(len(xs[0])) ] for r in range(len(xs)) ]
+    f = [ [ -1 for _ in range(len(xs[0])) ] for _ in range(len(xs)) ]
     f[0][0] = xs[0][0]
 
     while len(open) > 0:
@@ -36,7 +34,7 @@ def a_star(xs: List[List[int]]):
                 newG = g[current[0]][current[1]] + xs[neighbour[0]][neighbour[1]]
                 if newG < g[neighbour[0]][neighbour[1]] or g[neighbour[0]][neighbour[1]] == -1:
                     g[neighbour[0]][neighbour[1]] = newG
-                    f[neighbour[0]][neighbour[1]] = newG + (r + c) * 2
+                    f[neighbour[0]][neighbour[1]] = newG + (1 + r + c) * 2  # heuristic, positive when moving down or right, negative otherwise
                     if neighbour not in open: open.add(neighbour)
     return "failure"
 
