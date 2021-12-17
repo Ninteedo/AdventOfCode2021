@@ -1,3 +1,4 @@
 /AdventOfCode2021.code-workspace
 template.*
 __pycache__
+.vscode/settings.json
