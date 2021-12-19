@@ -15,7 +15,7 @@ def hitsTarget(xVel: int, yVel: int, xMin: int, xMax: int, yMin: int, yMax: int)
             return True
     return False
 
-def stepsToY(y, yVel):
+def stepsToY(y: int, yVel: int) -> int:
     return ((4*(yVel**2) + 4*yVel - 8*y + 1) ** 0.5 + 2*yVel + 1) / 2
 
 def main():

@@ -26,15 +26,14 @@ def part1(xs: List[SnailNum]) -> int:
     return getMagnitude(reduce(addSnailNums, xs[1:], xs[0]))
 
 def part2(xs: List[SnailNum]) -> int:
-    '''Slow ~5s'''
-    mags = [ getMagnitude(addSnailNums(deepcopy(x), deepcopy(y))) for x in xs for y in xs if x is not y ]
-    # print(mags)
+    '''Slow ~4s'''
+    mags = [ getMagnitude(addSnailNums(x, y)) for x in xs for y in xs if x is not y ]
     return max(mags)
 
 def addSnailNums(left: SnailNum, right: SnailNum) -> SnailNum:
     result = SnailNum()
     result.isValue = False
-    result.left, result.right = left, right
+    result.left, result.right = deepcopy(left), deepcopy(right)
     result.left.parent, result.right.parent = result, result
     while True:
         explosion = findReduction(result, False)
